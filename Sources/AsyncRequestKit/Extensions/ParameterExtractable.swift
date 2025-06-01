@@ -12,14 +12,14 @@ public protocol ParameterExtractable {}
 public extension ParameterExtractable {
     var queryItems: [URLQueryItem] {
         Mirror(reflecting: self).children.compactMap { child in
-            (child.value as? any QueryParamRepresentable)?.queryItem
+            (child.value as? QueryParamRepresentable)?.queryItem
         }
     }
 
     var headers: [String: String] {
         Dictionary(uniqueKeysWithValues:
-            Mirror(reflecting: self).children.compactMap {
-                (child.value as? any HeaderParamRepresentable)?.header
+            Mirror(reflecting: self).children.compactMap { child in
+                (child.value as? HeaderParamRepresentable)?.header
             }
         )
     }
