@@ -8,12 +8,17 @@
 import Foundation
 
 @propertyWrapper
-public struct QueryParam<T: LosslessStringConvertible> {
-    public let wrappedValue: T
-    public let key: String
-
-    public init(wrappedValue: T, _ key: String) {
+public struct QueryParam<Value: LosslessStringConvertible> {
+    public var wrappedValue: Value?
+    public var key: String
+    
+    public init(wrappedValue: Value?, _ key: String) {
         self.wrappedValue = wrappedValue
         self.key = key
+    }
+    
+    public var queryItem: URLQueryItem? {
+        guard let value = wrappedValue else { return nil }
+        return URLQueryItem(name: key, value: String(value))
     }
 }

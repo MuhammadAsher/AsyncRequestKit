@@ -8,12 +8,15 @@
 import Foundation
 
 @propertyWrapper
-public struct BodyParam<T: Encodable> {
-    public let wrappedValue: T
-    public let key: String
+public struct BodyParam<Value: Encodable> {
+    public var wrappedValue: Value
 
-    public init(wrappedValue: T, _ key: String) {
+    public init(wrappedValue: Value) {
         self.wrappedValue = wrappedValue
-        self.key = key
+    }
+
+    public var jsonData: Data? {
+        try? JSONEncoder().encode(wrappedValue)
     }
 }
+

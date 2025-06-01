@@ -9,11 +9,16 @@ import Foundation
 
 @propertyWrapper
 public struct HeaderParam {
-    public let wrappedValue: String
-    public let key: String
+    public var wrappedValue: String?
+    public var key: String
 
-    public init(wrappedValue: String, _ key: String) {
+    public init(wrappedValue: String?, _ key: String) {
         self.wrappedValue = wrappedValue
         self.key = key
+    }
+
+    public var header: (String, String)? {
+        guard let value = wrappedValue else { return nil }
+        return (key, value)
     }
 }
