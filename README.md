@@ -10,6 +10,7 @@ A lightweight, dependency-free Swift package for building asynchronous API reque
 
 - Pure Swift — no dependencies
 - Async/Await supported
+- Combine framwork supported
 - Property wrappers for `@QueryParam`, `@HeaderParam`, `@BodyParam`
 - Clean and scalable request builder
 - Plug-and-play into any iOS/macOS project
